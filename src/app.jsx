@@ -1,8 +1,7 @@
-import * as React from 'react';
-import Container from '@material-ui/core/Container';
+import Layout from './components/layout';
 
 function App() {
-  return <Container maxWidth="xs">Hello, App!</Container>;
+  return <Layout />;
 }
 
 export default App;
