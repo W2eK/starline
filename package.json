@@ -4,21 +4,25 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "next",
+    "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "next",
     "@material-ui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
+    "maki": "^2.1.0",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "styled-components": "latest"
+    "styled-components": "latest",
+    "svgo": "^2.3.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "yarn icons && react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "icons": "svgo -f ./node_modules/maki/icons -o ./src/assets/icons"
   },
   "browserslist": {
     "production": [

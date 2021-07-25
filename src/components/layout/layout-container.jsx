@@ -10,7 +10,10 @@ function Layout() {
         '& > *:last-child': {
           position: 'absolute',
           top: 0,
-          pointerEvents: 'none'
+          pointerEvents: 'none',
+          '> *': {
+            pointerEvents: 'auto'
+          }
         }
       }}
     >
