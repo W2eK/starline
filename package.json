@@ -14,7 +14,11 @@
     "mapbox-gl": "^2.3.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-redux": "^7.2.4",
     "react-scripts": "latest",
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "styled-components": "latest",
     "svgo": "^2.3.1"
   },
