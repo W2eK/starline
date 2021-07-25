@@ -1,7 +1,13 @@
-import { Box } from '@material-ui/core';
+import MapboxrGL from '../../mapboxr-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+const initialView = {
+  accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
+  style: 'mapbox://styles/w2ek/ckrhmo99y0lhv17lli0fgc3pb/draft'
+};
 
 function Map() {
-  return <Box sx={{ height: '100vh', backgroundColor: '#f6f6f6' }}>Map</Box>;
+  return <MapboxrGL style={{ height: '100vh' }} view={initialView} />;
 }
 
 export default Map;

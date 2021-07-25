@@ -11,6 +11,7 @@
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "maki": "^2.1.0",
+    "mapbox-gl": "^2.3.1",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
@@ -18,7 +19,7 @@
     "svgo": "^2.3.1"
   },
   "scripts": {
-    "start": "yarn icons && react-app-rewired start",
+    "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
