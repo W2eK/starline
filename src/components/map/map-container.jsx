@@ -7,7 +7,13 @@ const initialView = {
 };
 
 function Map() {
-  return <MapboxrGL style={{ height: '100vh' }} view={initialView} />;
+  return (
+    <MapboxrGL
+      style={{ height: '100vh' }}
+      view={initialView}
+      onmove={(event) => console.log(event)}
+    />
+  );
 }
 
 export default Map;

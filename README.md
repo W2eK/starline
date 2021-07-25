@@ -12,8 +12,9 @@ cd create-react-app-with-styled-components
 Install it and run:
 
 ```sh
-npm install
-npm start
+yarn
+yarn icons
+yarn start
 ```
 
 ## CodeSandbox

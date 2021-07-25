@@ -1,0 +1,57 @@
+/* Mapbox-JS Events */
+
+const EVENTS = [
+  // map + layer events
+  'mousedown',
+  'mouseup',
+  'mouseover',
+  'mouseout',
+  'mousemove',
+  'mouseenter',
+  'mouseleave',
+  'click',
+  'dblclick',
+  'contextmenu',
+  'touchstart',
+  'touchend',
+  'touchcancel',
+  // other map events
+  'wheel',
+  'resize',
+  'remove',
+  'touchmove',
+  'movestart',
+  'move',
+  'moveend',
+  'dragstart',
+  'drag',
+  'dragend',
+  'zoomstart',
+  'zoom',
+  'zoomend',
+  'rotatestart',
+  'rotate',
+  'rotateend',
+  'pitchstart',
+  'pitch',
+  'pitchend',
+  'boxzoomstart',
+  'boxzoomend',
+  'boxzoomcancel',
+  'webglcontextlost',
+  'webglcontextrestored',
+  // 'load',
+  'render',
+  'idle',
+  'error',
+  'data',
+  'styledata',
+  'sourcedata',
+  'dataloading',
+  'styledataloading',
+  'sourcedataloading',
+  'styleimagemissing'
+];
+
+export const LAYER_EVENTS = EVENTS.slice(0, 13);
+export default EVENTS;
