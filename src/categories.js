@@ -20,7 +20,7 @@ const colors = [
   materialColors.deepOrange
 ];
 
-const names = [
+export const names = [
   'shop',
   'grocery',
   'cafe',

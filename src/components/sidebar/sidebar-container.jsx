@@ -1,5 +1,5 @@
 import { Stack, styled, Paper } from '@material-ui/core';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Categories from '../categories';
 import List from '../list';
 
@@ -15,14 +15,12 @@ function Sidebar() {
       spacing={2}
       sx={{ width: { xs: 1, md: 2 / 5, lg: 360 }, padding: 2 }}
     >
-      <Router>
-        <Categories />
-        <Switch>
-          <Route path="/:category">
-            <List />
-          </Route>
-        </Switch>
-      </Router>
+      <Categories />
+      <Switch>
+        <Route path="/:category">
+          <List />
+        </Route>
+      </Switch>
     </Stack>
   );
 }
