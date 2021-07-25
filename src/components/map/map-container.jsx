@@ -1,6 +1,10 @@
+import { useDispatch } from 'react-redux';
 import MapboxrGL from '../../mapboxr-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PoiLayers from './poi-layer';
+import { useThrottle } from '../../hooks/use-delay';
+
+import { setVisible } from '../../store/categories';
 
 const initialView = {
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -8,13 +12,27 @@ const initialView = {
 };
 // @ts-ignore
 window.__MAPBOXR_GL_DEBUG = true;
+
 function Map() {
+  const dispatch = useDispatch();
+  const onmove = useThrottle(
+    ({ target }) => {
+      const features = target
+        .queryRenderedFeatures({ layers: ['poi-halo'] })
+        .reduce((obj, { id, properties }) => {
+          const { maki } = properties;
+          const arr = obj[maki] || [];
+          arr.push({ id, properties, maki });
+          obj[maki] = arr;
+          return obj;
+        }, {});
+      dispatch(setVisible(features));
+    },
+    1000,
+    [dispatch]
+  );
   return (
-    <MapboxrGL
-      style={{ height: '100vh' }}
-      view={initialView}
-      // onmove={(event) => console.log(event)}
-    >
+    <MapboxrGL style={{ height: '100vh' }} view={initialView} onmove={onmove}>
       <PoiLayers />
     </MapboxrGL>
   );

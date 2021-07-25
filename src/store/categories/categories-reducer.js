@@ -1,8 +1,12 @@
-import { SET_CATEGORY, RESET_CATEGORY } from './categories-types';
+import {
+  SET_CATEGORY,
+  RESET_CATEGORY,
+  UPDATE_VISIBLE
+} from './categories-types';
 
 const initialState = {
   current: null,
-  visible: []
+  visible: {}
 };
 
 function categoriesReducer(state = initialState, { type, payload }) {
@@ -11,6 +15,8 @@ function categoriesReducer(state = initialState, { type, payload }) {
       return { ...state, current: payload };
     case RESET_CATEGORY:
       return { ...state, current: null };
+    case UPDATE_VISIBLE:
+      return { ...state, visible: payload };
     default:
       return state;
   }

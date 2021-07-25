@@ -1,2 +1,3 @@
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const RESET_CATEGORY = 'RESET_CATEGORY';
+export const UPDATE_VISIBLE = 'UPDATE_VISIBLE';

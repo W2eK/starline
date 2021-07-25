@@ -20,20 +20,19 @@ const colors = [
   materialColors.deepOrange
 ];
 
-export const names = [
-  'shop',
-  'grocery',
-  'cafe',
-  'bakery',
-  'lodging',
-  'bank'
-];
+export const names = ['shop', 'grocery', 'cafe', 'bakery', 'lodging', 'bank'];
+
+export const plurals = {
+  grocery: 'groceries',
+  bakery: 'bakeries'
+};
 
 const categories = names.reduce((obj, name, i, { length }) => {
   const step = Math.round((colors.length / length) * i) % colors.length;
   const color = colors[step];
   const icon = icons[name];
-  obj[name] = { color, icon, name };
+  const plural = plurals[name] || name + 's';
+  obj[name] = { color, icon, name, plural };
   return obj;
 }, {});
 

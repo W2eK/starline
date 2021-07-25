@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography, Divider } from '@material-ui/core';
 import {
   Link as RouterLink,
   useLocation,
@@ -18,9 +18,10 @@ function Categories() {
   const match = useRouteMatch('/:category');
   return (
     <Paper sx={{ padding: 2 }}>
-      <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
+      <Typography variant="subtitle1" sx={{ marginBottom: 1 }}>
         Search arround this place
       </Typography>
+      <Divider sx={{ marginBottom: 3 }} />
       <Grid container spacing={2}>
         {Object.values(categories).map(({ name, ...category }) => {
           const active = match?.params.category === name;
