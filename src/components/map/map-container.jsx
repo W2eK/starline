@@ -11,7 +11,7 @@ function Map() {
     <MapboxrGL
       style={{ height: '100vh' }}
       view={initialView}
-      onmove={(event) => console.log(event)}
+      // onmove={(event) => console.log(event)}
     />
   );
 }
