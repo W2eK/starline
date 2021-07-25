@@ -4,7 +4,7 @@ import PoiLayers from './poi-layer';
 
 const initialView = {
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
-  style: 'mapbox://styles/w2ek/ckrhmo99y0lhv17lli0fgc3pb/draft'
+  style: 'mapbox://styles/w2ek/ckrhmo99y0lhv17lli0fgc3pb'
 };
 // @ts-ignore
 window.__MAPBOXR_GL_DEBUG = true;
