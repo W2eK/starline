@@ -1,7 +1,6 @@
 import MapboxrGL from '../../mapboxr-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
-import PoiFilter from './poi-filter';
+import PoiLayers from './poi-layer';
 
 const initialView = {
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -16,7 +15,7 @@ function Map() {
       view={initialView}
       // onmove={(event) => console.log(event)}
     >
-      <PoiFilter />
+      <PoiLayers />
     </MapboxrGL>
   );
 }
