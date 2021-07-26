@@ -27,7 +27,10 @@ function Categories() {
           const active = match?.params.category === name;
           return (
             <Grid key={name} item xs={4} sm={3}>
-              <RouterLink to={active ? '/' : '/' + name}>
+              <RouterLink
+                to={active ? '/' : '/' + name}
+                style={{ textDecoration: 'none' }}
+              >
                 <Item {...category} name={name} active={active} />
               </RouterLink>
             </Grid>

@@ -2,6 +2,7 @@ import { Stack, styled, Paper } from '@material-ui/core';
 import { Switch, Route } from 'react-router-dom';
 import Categories from '../categories';
 import List from '../list';
+import PoiItem from '../item';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -17,8 +18,11 @@ function Sidebar() {
     >
       <Categories />
       <Switch>
-        <Route path="/:category">
+        <Route path="/:category" exact>
           <List />
+        </Route>
+        <Route path="/:category/:id" exact>
+          <PoiItem />
         </Route>
       </Switch>
     </Stack>

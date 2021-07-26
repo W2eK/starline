@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { Box, Avatar, Typography, SvgIcon, Badge } from '@material-ui/core';
+import { Box, Button, Avatar, Typography, SvgIcon, Badge } from '@material-ui/core';
 
-function Item({ name, color, icon, active, onClick }) {
+function Item({ name, plural, color, icon, active, onClick }) {
   const count =
     // @ts-ignore
     useSelector(({ categories }) => categories.visible[name]?.length) || 0;
@@ -36,7 +36,7 @@ function Item({ name, color, icon, active, onClick }) {
         variant="caption"
         noWrap
       >
-        {name}
+        {plural}
       </Typography>
     </Box>
   );

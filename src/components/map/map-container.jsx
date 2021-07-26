@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import MapboxrGL from '../../mapboxr-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PoiLayers from './poi-layer';
+import PoiState from './poi-state';
 import { useThrottle } from '../../hooks/use-delay';
 
 import { setVisible } from '../../store/categories';
@@ -32,7 +33,8 @@ function Map() {
     [dispatch]
   );
   return (
-    <MapboxrGL style={{ height: '100vh' }} view={initialView} onmove={onmove}>
+    <MapboxrGL style={{ height: '100vh' }} view={initialView} onviewport={onmove}>
+      <PoiState />
       <PoiLayers />
     </MapboxrGL>
   );

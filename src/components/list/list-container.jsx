@@ -30,7 +30,7 @@ function PoiList() {
   const { plural, icon, color } = categories[category];
   const list = useSelector(({ categories }) => categories.visible[category]);
   return (
-    <Paper sx={{ padding: 2 }}>
+    <Paper sx={{ padding: 2, flex: 1 }}>
       <Typography variant="subtitle1">
         {list ? `Local ${plural}` : 'Not found'}
       </Typography>
@@ -38,7 +38,7 @@ function PoiList() {
         <>
           <Divider sx={{ marginTop: 1 }} />
           <List dense sx={{ marginRight: -2 }}>
-            <AutoSizer style={{ height: '50vh' }}>
+            <AutoSizer style={{height: '50vh'}}>
               {({ height, width }) => (
                 <FixedSizeList
                   itemData={{ list, icon, color, category }}

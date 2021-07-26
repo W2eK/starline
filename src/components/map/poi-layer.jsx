@@ -40,9 +40,14 @@ function PoiLayer() {
   ];
   return (
     <>
-      <Layer id="poi-dots">
+      <Layer id="poi-dots" onmouseenter={e => console.log(e)}>
         <PoiFilter />
         <Property name="circle-color" value={rule} type="paint" />
+        <Property
+          name="circle-radius"
+          value={['case', ['boolean', ['feature-state', 'hover'], false], 5, 2]}
+          type="paint"
+        />
       </Layer>
       <Layer id="poi-halo" cursor="pointer">
         <Filter rules={['match', ['get', 'maki'], names, true, false]} />
