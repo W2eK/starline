@@ -7,15 +7,15 @@ import {
   ListItemText
 } from '@material-ui/core';
 
-import { resetHoverItem, setHoverItem } from '../../store/categories';
+import { setActivePoi, resetActivePoi } from '../../store/poi';
 
 function Item({ id, style, icon, properties, color, category }) {
   const dispatch = useDispatch();
   return (
     <Link
       to={`/${category}/${id}`}
-      onMouseEnter={() => dispatch(setHoverItem(id))}
-      onMouseLeave={() => dispatch(resetHoverItem())}
+      onMouseEnter={() => dispatch(setActivePoi(id, category, properties.name))}
+      onMouseLeave={() => dispatch(resetActivePoi())}
     >
       <ListItemButton divider disableGutters style={style}>
         <ListItemIcon sx={{ minWidth: 40 }}>

@@ -1,4 +1,10 @@
-import { POI_FETCH, POI_FAILED, POI_LOADED } from './poi-types';
+import {
+  POI_FETCH,
+  POI_FAILED,
+  POI_LOADED,
+  POI_ACTIVE,
+  POI_INACTIVE
+} from './poi-types';
 
 export const poiFetch = payload => (dispatch, getState) => {
   dispatch({ type: POI_FETCH });
@@ -14,3 +20,9 @@ export const poiFetch = payload => (dispatch, getState) => {
     }
   }, 200 + Math.random() * 500);
 };
+
+export const setActivePoi = (id, category, name) => ({
+  type: POI_ACTIVE,
+  payload: { id, category, name }
+});
+export const resetActivePoi = () => ({ type: POI_INACTIVE });
