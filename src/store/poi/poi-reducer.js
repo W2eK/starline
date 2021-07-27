@@ -4,6 +4,7 @@ import {
   POI_LOADED,
   POI_ACTIVE,
   POI_INACTIVE,
+  POI_SEARCH,
   SET_CATEGORY,
   RESET_CATEGORY,
   UPDATE_VISIBLE,
@@ -12,6 +13,8 @@ import {
   CHANGE_CAMERA
 } from './poi-types';
 
+import poiFilter from './poi-filter';
+
 const initialState = {
   id: null,
   name: null,
@@ -19,6 +22,8 @@ const initialState = {
   item: null,
   loading: false,
   error: false,
+  search: '',
+  found: {},
   visible: {},
   camera: {},
   movementCamera: {},
@@ -74,6 +79,12 @@ function PoiReducer(state = initialState, { type, payload }) {
       };
     case CHANGE_CAMERA:
       return { ...state, camera: payload };
+    case POI_SEARCH:
+      return {
+        ...state,
+        search: payload,
+        found: poiFilter(state.visible, payload.toLowerCase())
+      };
     default:
       return state;
   }

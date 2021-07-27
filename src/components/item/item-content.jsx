@@ -19,7 +19,12 @@ function Content({ id, category }) {
   const loading = useSelector(({ poi }) => poi.loading);
   const item = useSelector(({ poi }) => poi.item);
   if (loading) return <LinearProgress sx={{ marginBottom: 1, marginTop: 2 }} />;
-  if (!item) return <Typography color="error">Something goes wrong...</Typography>;
+  if (!item)
+    return (
+      <Typography align="center" variant="body2" color="error">
+        Something goes wrong...
+      </Typography>
+    );
   const rows = Object.entries(item).map(([key, value]) => (
     <ListItem key={key} disablePadding>
       <ListItemText primary={value} secondary={key} />

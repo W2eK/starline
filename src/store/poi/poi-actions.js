@@ -4,6 +4,7 @@ import {
   POI_LOADED,
   POI_ACTIVE,
   POI_INACTIVE,
+  POI_SEARCH,
   SET_CATEGORY,
   RESET_CATEGORY,
   UPDATE_VISIBLE,
@@ -49,3 +50,4 @@ export const setVisible = visible => (dispatch, getState) => {
 export const freezeMap = () => ({ type: FREEZE_MAP });
 export const unfreezeMap = payload => ({ type: UNFREEZE_MAP, payload });
 export const changeCamera = payload => ({ type: CHANGE_CAMERA, payload });
+export const searchPoi = payload => ({ type: POI_SEARCH, payload });

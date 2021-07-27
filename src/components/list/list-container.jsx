@@ -2,10 +2,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { List, Paper, Typography, Divider } from '@material-ui/core';
-import { FixedSizeList } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
 
 import Item from './list-item';
+import Virtualized from '../virtualized';
 
 import { freezeMap, unfreezeMap } from '../../store/poi';
 
@@ -33,7 +32,9 @@ function PoiList() {
     name: category
   } = useSelector(({ poi }) => poi.category) || {};
   const dispatch = useDispatch();
-  const list = useSelector(({ poi }) => poi.visible[category]);
+  const list = useSelector(({ poi }) =>
+    poi.search ? poi.found[category] : poi.visible[category]
+  );
   return (
     <Paper
       sx={{ padding: 2, flex: 1 }}
@@ -47,20 +48,12 @@ function PoiList() {
         <>
           <Divider sx={{ marginTop: 1 }} />
           <List dense sx={{ marginRight: -2 }}>
-            <AutoSizer style={{ height: '50vh' }}>
-              {({ height, width }) => (
-                <FixedSizeList
-                  itemData={{ list, icon, color, category }}
-                  height={height}
-                  itemCount={list.length}
-                  overscanCount={5}
-                  itemSize={64}
-                  width={width}
-                >
-                  {renderRow}
-                </FixedSizeList>
-              )}
-            </AutoSizer>
+            <Virtualized
+              data={{ list, icon, color, category }}
+              count={list.length}
+            >
+              {renderRow}
+            </Virtualized>
           </List>
         </>
       ) : null}
