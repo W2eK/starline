@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
 import MapboxrGL from '../../mapboxr-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import PoiLayers from './poi-layer';
+import PoiDots from './poi-dots';
 import PoiLabels from './poi-labels';
+import PoiHeatmap from './poi-heatmap';
 import Movements from './map-movements';
 // import PoiState from './poi-state';
 import { useThrottle } from '../../hooks/use-delay';
@@ -53,8 +54,8 @@ function Map() {
       onviewport={[onmove, onviewport]}
     >
       <Movements />
-      {/* <PoiState /> */}
-      <PoiLayers />
+      <PoiHeatmap />
+      <PoiDots />
       <PoiLabels />
     </MapboxrGL>
   );
