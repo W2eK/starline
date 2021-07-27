@@ -1,11 +1,13 @@
 // @ts-nocheck
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { List, Paper, Typography, Divider } from '@material-ui/core';
 import { FixedSizeList } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 import Item from './list-item';
+
+import { freezeMap, unfreezeMap } from '../../store/poi';
 
 function renderRow(props) {
   const { index, style, data } = props;
@@ -30,9 +32,14 @@ function PoiList() {
     color,
     name: category
   } = useSelector(({ poi }) => poi.category) || {};
+  const dispatch = useDispatch();
   const list = useSelector(({ poi }) => poi.visible[category]);
   return (
-    <Paper sx={{ padding: 2, flex: 1 }}>
+    <Paper
+      sx={{ padding: 2, flex: 1 }}
+      onMouseEnter={() => dispatch(freezeMap())}
+      onMouseLeave={() => dispatch(unfreezeMap())}
+    >
       <Typography variant="subtitle1">
         {list ? `Local ${plural}` : 'Not found'}
       </Typography>

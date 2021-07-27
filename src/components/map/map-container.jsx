@@ -3,10 +3,11 @@ import MapboxrGL from '../../mapboxr-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PoiLayers from './poi-layer';
 import PoiLabels from './poi-labels';
+import Movements from './map-movements';
 // import PoiState from './poi-state';
 import { useThrottle } from '../../hooks/use-delay';
 
-import { setVisible } from '../../store/poi';
+import { setVisible, changeCamera } from '../../store/poi';
 
 const initialView = {
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -34,12 +35,24 @@ function Map() {
     1000,
     [dispatch]
   );
+  const onviewport = useThrottle(
+    ({ target: map }) => {
+      const coordinates = map.getCenter().toArray();
+      const zoom = map.getZoom();
+      const bearing = map.getBearing();
+      const pitch = map.getPitch();
+      dispatch(changeCamera({ coordinates, zoom, bearing, pitch }));
+    },
+    200,
+    [dispatch]
+  );
   return (
     <MapboxrGL
       style={{ height: '100vh' }}
       view={initialView}
-      onviewport={onmove}
+      onviewport={[onmove, onviewport]}
     >
+      <Movements />
       {/* <PoiState /> */}
       <PoiLayers />
       <PoiLabels />

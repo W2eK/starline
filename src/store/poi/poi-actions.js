@@ -6,8 +6,12 @@ import {
   POI_INACTIVE,
   SET_CATEGORY,
   RESET_CATEGORY,
-  UPDATE_VISIBLE
+  UPDATE_VISIBLE,
+  FREEZE_MAP,
+  CHANGE_CAMERA,
+  UNFREEZE_MAP
 } from './poi-types';
+import test from '../../mapboxr-gl/context';
 
 export const poiFetch = payload => (dispatch, getState) => {
   dispatch({ type: POI_FETCH });
@@ -24,9 +28,9 @@ export const poiFetch = payload => (dispatch, getState) => {
   }, 200 + Math.random() * 500);
 };
 
-export const setActivePoi = (id, name) => ({
+export const setActivePoi = (id, name, coordinates) => ({
   type: POI_ACTIVE,
-  payload: name ? { id, name } : { id }
+  payload: name ? { id, name, coordinates } : { id }
 });
 export const resetActivePoi = () => ({ type: POI_INACTIVE });
 
@@ -37,7 +41,11 @@ export const setCategory = category => ({
 
 export const resetCategory = () => ({ type: RESET_CATEGORY });
 
-export const setVisible = visible => ({
-  type: UPDATE_VISIBLE,
-  payload: visible
-});
+export const setVisible = visible => (dispatch, getState) => {
+  if (!getState().poi.freeze)
+    dispatch({ type: UPDATE_VISIBLE, payload: visible });
+};
+
+export const freezeMap = () => ({ type: FREEZE_MAP });
+export const unfreezeMap = payload => ({ type: UNFREEZE_MAP, payload });
+export const changeCamera = payload => ({ type: CHANGE_CAMERA, payload });

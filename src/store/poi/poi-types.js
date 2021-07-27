@@ -6,3 +6,6 @@ export const POI_INACTIVE = 'POI_INACTIVE';
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const RESET_CATEGORY = 'RESET_CATEGORY';
 export const UPDATE_VISIBLE = 'UPDATE_VISIBLE';
+export const FREEZE_MAP = 'FREEZE_MAP';
+export const UNFREEZE_MAP = 'UNFREEZE_MAP';
+export const CHANGE_CAMERA = 'CHANGE_CAMERA';

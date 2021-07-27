@@ -9,12 +9,12 @@ import {
 
 import { setActivePoi, resetActivePoi } from '../../store/poi';
 
-function Item({ id, style, icon, properties, color, category }) {
+function Item({ id, style, icon, properties, color, category, coordinates }) {
   const dispatch = useDispatch();
   return (
     <Link
       to={`/${category}/${id}`}
-      onMouseEnter={() => dispatch(setActivePoi(id, properties.name))}
+      onMouseEnter={() => dispatch(setActivePoi(id, properties.name, coordinates))}
       // onMouseLeave={() => dispatch(resetActivePoi())}
     >
       <ListItemButton divider disableGutters style={style}>

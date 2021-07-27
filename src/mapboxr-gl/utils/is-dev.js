@@ -1,9 +1,9 @@
+// @ts-nocheck
 const development =
   !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 function isDev() {
-  // @ts-ignore
-  return !!window.__MAPBOXR_GL_DEBUG && !!window.__MAPBOXR_GL_VERBOSE && development;
+  return !!window.__MAPBOXR_GL_DEBUG && development;
 }
 
 const COLORS = {
@@ -14,7 +14,7 @@ const COLORS = {
 };
 
 const logger = (component, name, status) => {
-  if (!isDev()) return;
+  if (!isDev()  || !window.__MAPBOXR_GL_VERBOSE) return;
   const color = status === 'rendering' ? `color: ${COLORS[status]};` : '';
   const styles = [
     `font-style: italic;` + color,

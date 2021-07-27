@@ -2,17 +2,20 @@
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Paper, Typography, Divider, Link } from '@material-ui/core';
 import Content from './item-content';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { unfreezeMap } from '../../store/poi';
 
 function Item() {
   const { plural, name: category } =
     useSelector(({ poi }) => poi.category) || {};
   const id = useSelector(({ poi }) => poi.id);
   const name = useSelector(({ poi }) => poi.name);
+  const dispatch = useDispatch();
   return (
     <Paper sx={{ padding: 2 }}>
       <Typography variant="subtitle1">
-        <RouterLink to={`/${category}`} style={{ textDecoration: 'none' }}>
+        <RouterLink to={`/${category}`} style={{ textDecoration: 'none' }} onClick={() => dispatch(unfreezeMap(true))}>
           <Link underline="hover" as="span">
             ‹ Return to Local {plural}
           </Link>
