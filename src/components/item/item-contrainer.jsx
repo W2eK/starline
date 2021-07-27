@@ -1,14 +1,14 @@
 // @ts-nocheck
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { Box, Paper, Typography, Divider, Link } from '@material-ui/core';
 import Content from './item-content';
-import categories from '../../categories';
+import { useSelector } from 'react-redux';
 
 function Item() {
-  let { category, id } = useParams();
-  id = parseInt(id);
-  // const list = useSelector(({ categories }) => categories.visible[category]);
-  const { plural } = categories[category];
+  const { plural, name: category } =
+    useSelector(({ poi }) => poi.category) || {};
+  const id = useSelector(({ poi }) => poi.id);
+  const name = useSelector(({ poi }) => poi.name);
   return (
     <Paper sx={{ padding: 2 }}>
       <Typography variant="subtitle1">
@@ -20,7 +20,8 @@ function Item() {
       </Typography>
 
       <Divider sx={{ marginTop: 1, marginBottom: 2 }} />
-      <Box sx={{ maxHeight: '50vh', overflowY: 'scroll', marginRight: -2  }}>
+      <Box sx={{ maxHeight: '50vh', overflowY: 'scroll', marginRight: -2 }}>
+        {name && <Typography variant="h6">{name}</Typography>}
         <Content id={id} category={category} />
       </Box>
     </Paper>

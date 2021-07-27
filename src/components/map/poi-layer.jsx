@@ -1,4 +1,5 @@
-import { useRouteMatch } from 'react-router-dom';
+// @ts-nocheck
+import { useSelector } from 'react-redux';
 
 import { Layer, Property, Filter } from '../../mapboxr-gl';
 import PoiFilter from './poi-filter';
@@ -18,9 +19,7 @@ const hexToRgb = hex => {
 };
 
 function PoiLayer() {
-  const match = useRouteMatch('/:category');
-  // @ts-ignore
-  const category = match?.params.category;
+  const { name: category } = useSelector(({ poi }) => poi.category || {});
   const color = categories[category]?.color[700] || '#999999';
   const rule = category
     ? ['match', ['get', 'maki'], category, color, '#999999']
@@ -43,11 +42,6 @@ function PoiLayer() {
       <Layer id="poi-dots" onmouseenter={e => console.log(e)}>
         <PoiFilter />
         <Property name="circle-color" value={rule} type="paint" />
-        <Property
-          name="circle-radius"
-          value={['case', ['boolean', ['feature-state', 'hover'], false], 5, 2]}
-          type="paint"
-        />
       </Layer>
       <Layer id="poi-halo" cursor="pointer">
         <Filter rules={['match', ['get', 'maki'], names, true, false]} />

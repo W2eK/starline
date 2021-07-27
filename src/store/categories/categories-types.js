@@ -1,5 +1,0 @@
-export const SET_CATEGORY = 'SET_CATEGORY';
-export const RESET_CATEGORY = 'RESET_CATEGORY';
-export const UPDATE_VISIBLE = 'UPDATE_VISIBLE';
-export const SET_HOVER_ITEM = 'SET_HOVER_ITEM';
-export const RESET_HOVER_ITEM = 'RESET_HOVER_ITEM';

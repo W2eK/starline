@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux';
-import { Box, Button, Avatar, Typography, SvgIcon, Badge } from '@material-ui/core';
+import { Box, Avatar, Typography, SvgIcon, Badge } from '@material-ui/core';
 
 function Item({ name, plural, color, icon, active, onClick }) {
-  const count =
-    // @ts-ignore
-    useSelector(({ categories }) => categories.visible[name]?.length) || 0;
+  // @ts-ignore
+  const count = useSelector(({ poi }) => poi.visible[name]?.length) || 0;
   return (
     <Box
       sx={{

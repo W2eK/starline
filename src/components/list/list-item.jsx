@@ -14,8 +14,8 @@ function Item({ id, style, icon, properties, color, category }) {
   return (
     <Link
       to={`/${category}/${id}`}
-      onMouseEnter={() => dispatch(setActivePoi(id, category, properties.name))}
-      onMouseLeave={() => dispatch(resetActivePoi())}
+      onMouseEnter={() => dispatch(setActivePoi(id, properties.name))}
+      // onMouseLeave={() => dispatch(resetActivePoi())}
     >
       <ListItemButton divider disableGutters style={style}>
         <ListItemIcon sx={{ minWidth: 40 }}>

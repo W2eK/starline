@@ -1,14 +1,14 @@
-import { useRouteMatch } from 'react-router-dom';
+// @ts-nocheck
+import { useSelector } from 'react-redux';
 
 import { Filter } from '../../mapboxr-gl';
 import { names } from '../../categories';
 
 function PoiFilter({ layer = '' }) {
-  const match = useRouteMatch('/:category');
+  const { name: category } = useSelector(({ poi }) => poi.category || {});
   const rules = [
     'all',
-    // @ts-ignore
-    ['match', ['get', 'maki'], match?.params.category || names, true, false]
+    ['match', ['get', 'maki'], category || names, true, false]
   ];
   return <Filter layer={layer} rules={rules} />;
 }

@@ -3,10 +3,10 @@ import MapboxrGL from '../../mapboxr-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PoiLayers from './poi-layer';
 import PoiLabels from './poi-labels';
-import PoiState from './poi-state';
+// import PoiState from './poi-state';
 import { useThrottle } from '../../hooks/use-delay';
 
-import { setVisible } from '../../store/categories';
+import { setVisible } from '../../store/poi';
 
 const initialView = {
   accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN,
@@ -21,10 +21,11 @@ function Map() {
     ({ target }) => {
       const features = target
         .queryRenderedFeatures({ layers: ['poi-halo'] })
-        .reduce((obj, { id, properties }) => {
+        .reduce((obj, { id, properties, geometry }) => {
           const { maki } = properties;
           const arr = obj[maki] || [];
-          arr.push({ id, properties, maki });
+          const { coordinates } = geometry;
+          arr.push({ id, properties, maki, coordinates });
           obj[maki] = arr;
           return obj;
         }, {});
@@ -39,7 +40,7 @@ function Map() {
       view={initialView}
       onviewport={onmove}
     >
-      <PoiState />
+      {/* <PoiState /> */}
       <PoiLayers />
       <PoiLabels />
     </MapboxrGL>

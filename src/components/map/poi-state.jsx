@@ -1,8 +1,11 @@
 import { Features } from '../../mapboxr-gl';
+import { useSelector } from 'react-redux';
 
 function PoiState() {
-  const data = [{ id: 15844616720, hover: true }];
-  return <Features source="composite" sourceLayer="poi_labels" data={data} />;
+  // @ts-ignore
+  const id = useSelector(({ poi }) => poi.id) || 0;
+  const data = [{ id, active: true }];
+  return <Features source="composite" sourceLayer="poi_label" data={data} />;
 }
 
 export default PoiState;

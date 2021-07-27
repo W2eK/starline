@@ -3,7 +3,7 @@ const development =
 
 function isDev() {
   // @ts-ignore
-  return !!window.__MAPBOXR_GL_DEBUG && development;
+  return !!window.__MAPBOXR_GL_DEBUG && !!window.__MAPBOXR_GL_VERBOSE && development;
 }
 
 const COLORS = {

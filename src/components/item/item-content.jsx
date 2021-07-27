@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Typography,
-  CircularProgress,
   LinearProgress,
   List,
   ListItem,
@@ -17,21 +16,16 @@ function Content({ id, category }) {
   useEffect(() => {
     dispatch(poiFetch({ id, category }));
   }, []);
-  const { item, loading, error } = useSelector(({ poi }) => poi);
-  if (loading) return <LinearProgress />;
-  if (!item) return null;
-  const { name, ...properties } = item.properties;
-  const rows = Object.entries(properties).map(([key, value]) => (
+  const loading = useSelector(({ poi }) => poi.loading);
+  const item = useSelector(({ poi }) => poi.item);
+  if (loading) return <LinearProgress sx={{ marginBottom: 1, marginTop: 2 }} />;
+  if (!item) return <Typography color="error">Something goes wrong...</Typography>;
+  const rows = Object.entries(item).map(([key, value]) => (
     <ListItem key={key} disablePadding>
       <ListItemText primary={value} secondary={key} />
     </ListItem>
   ));
-  return (
-    <>
-      <Typography variant="h6">{name}</Typography>
-      <List dense >{rows}</List>
-    </>
-  );
+  return <List dense>{rows}</List>;
 }
 
 export default Content;
